@@ -1,31 +1,20 @@
-# Step 1: Calculate the total of the top 3 subjects and add marks scored in English
-def calculate_total_score(marks):
-    top_3_subjects = sorted(marks[:-1], reverse=True)[:3]  # Exclude English marks
-    total_score = sum(top_3_subjects) + marks[-1]  # Add English marks
-    return total_score
+# Import necessary libraries
+import streamlit as st
 
-# Step 2: Divide the total score by 4
-def calculate_average_score(total_score):
-    average_score = total_score / 4
-    return average_score
+# Main function to run the Streamlit app
+def main():
+    st.title("Welcome to Streamlit Cloud!")
 
-# Step 3: Calculate the average score
-def calculate_percentage(average_score):
-    percentage = average_score * 100
-    return percentage
+    # Add some text
+    st.write("This is a simple Streamlit Cloud app.")
+    st.write("You can customize it to create interactive web applications.")
 
-# Example marks for 4 subjects (excluding English)
-marks = [85, 90, 92, 88]
+    # Add a text input field
+    user_input = st.text_input("Enter your name:", "")
 
-# Step 1: Calculate total score
-total_score = calculate_total_score(marks)
+    # Display a greeting message
+    if user_input:
+        st.write(f"Hello, {user_input}! Welcome to Streamlit Cloud.")
 
-# Step 2: Calculate average score
-average_score = calculate_average_score(total_score)
-
-# Step 3: Calculate percentage
-percentage = calculate_percentage(average_score)
-
-print("Total Score:", total_score)
-print("Average Score:", average_score)
-print("Percentage:", percentage)
+if __name__ == "__main__":
+    main()
