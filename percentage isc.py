@@ -1,3 +1,5 @@
+import streamlit as st
+
 # Step 1: Calculate the total of the top 3 subjects and add marks scored in English
 def calculate_total_score(marks):
     top_3_subjects = sorted(marks[:-1], reverse=True)[:3]  # Exclude English marks
@@ -14,25 +16,33 @@ def calculate_percentage(average_score):
     percentage = average_score * 100
     return percentage
 
-# Input marks for 4 subjects (excluding English) from the user
-marks = []
-for i in range(4):
-    subject_marks = float(input(f"Enter marks for subject {i+1}: "))
-    marks.append(subject_marks)
+# Main Streamlit app code
+def main():
+    st.title("Grade Calculator")
 
-# Input marks for English from the user
-english_marks = float(input("Enter marks for English: "))
-marks.append(english_marks)
+    # Input marks for 4 subjects (excluding English)
+    marks = []
+    for i in range(4):
+        subject_marks = st.number_input(f"Enter marks for subject {i+1}:")
+        marks.append(subject_marks)
 
-# Step 1: Calculate total score
-total_score = calculate_total_score(marks)
+    # Input marks for English
+    english_marks = st.number_input("Enter marks for English:")
+    marks.append(english_marks)
 
-# Step 2: Calculate average score
-average_score = calculate_average_score(total_score)
+    # Calculate total score
+    total_score = calculate_total_score(marks)
 
-# Step 3: Calculate percentage
-percentage = calculate_percentage(average_score)
+    # Calculate average score
+    average_score = calculate_average_score(total_score)
 
-print("Total Score:", total_score)
-print("Average Score:", average_score)
-print("Percentage:", percentage)
+    # Calculate percentage
+    percentage = calculate_percentage(average_score)
+
+    # Display results
+    st.write(f"Total Score: {total_score}")
+    st.write(f"Average Score: {average_score}")
+    st.write(f"Percentage: {percentage}%")
+
+if __name__ == "__main__":
+    main()
