@@ -1,21 +1,5 @@
 import streamlit as st
 
-# Function to calculate total score
-def calculate_total_score(marks):
-    top_3_subjects = sorted(marks[:-1], reverse=True)[:3]  # Exclude English marks
-    total_score = sum(top_3_subjects) + marks[-1]  # Add English marks
-    return total_score
-
-# Function to calculate average score
-def calculate_average_score(total_score):
-    average_score = total_score / 4
-    return average_score
-
-# Function to calculate percentage
-def calculate_percentage(average_score):
-    percentage = average_score * 100
-    return percentage
-
 # Main function to run the Streamlit app
 def main():
     st.title("Grade Calculator")
@@ -31,18 +15,18 @@ def main():
     marks.append(english_marks)
 
     # Calculate total score
-    total_score = calculate_total_score(marks)
+    total_score = sum(marks)
 
     # Calculate average score
-    average_score = calculate_average_score(total_score)
+    average_score = total_score / 5
 
     # Calculate percentage
-    percentage = calculate_percentage(average_score)
+    percentage = (total_score / 500) * 100
 
     # Display results
     st.write(f"Total Score: {total_score}")
     st.write(f"Average Score: {average_score}")
-    st.write(f"Percentage: {percentage}%")
+    st.write(f"Percentage: {percentage:.2f}%")
 
 if __name__ == "__main__":
     main()
